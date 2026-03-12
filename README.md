@@ -23,11 +23,11 @@ Aquí detallo las tareas y configuraciones que ya dejé listas en esta versión:
 
 ## Lo que hace falta
 
-Estas son las tareas pendientes en las que necesitamos trabajar. Si alguien toma una, recuerde marcarla con una `x` dentro de los corchetes: `- [x]` y hacer el commit.
+Estas son las tareas pendientes en las que necesitamos trabajar. Si alguien quiere una, avisen en wha.
 
--[] Registrar usuarios (lectores) con nombre, número de identificación y libros prestados.
--[] Realizar préstamos y devoluciones de libros, validando disponibilidad.
--[] Guardar y cargar datos en un archivo de texto (persistencia básica).
+- Registrar usuarios (lectores) con nombre, número de identificación y libros prestados.
+- Realizar préstamos y devoluciones de libros, validando disponibilidad.
+- Guardar y cargar datos en un archivo de texto (persistencia básica).
 
 ---
 

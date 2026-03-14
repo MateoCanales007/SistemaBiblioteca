@@ -1,1 +1,2 @@
 Mateo,Canales,2001,masculino,true
+Liquidos,Josep,2023,Matematicas,true

@@ -49,25 +49,25 @@ public class Main {
                 case 4:
                     miBiblioteca.listarLectores();
                     break;
-                default:
-                    System.out.println("Opción no válida. Intenta de nuevo.");
 
                 case 5:
-                    System.out.println("ID del lector: ");
+                    System.out.print("ID del lector: ");
                     String prestamoId = scanner.nextLine();
-                    System.out.println("Titulo del libro para prestar: ");
+                    System.out.print("Titulo del libro para prestar: ");
                     String prestamoLibro = scanner.nextLine();
                     miBiblioteca.prestarLibro(prestamoId, prestamoLibro);
                     break;
 
                 case 6:
-                    System.out.println("ID del lector: ");
+                    System.out.print("ID del lector: ");
                     String devolucionId = scanner.nextLine();
-                    System.out.println("Titulo del libro para devoler: ");
+                    System.out.print("Titulo del libro para devoler: ");
                     String devolucionLibro = scanner.nextLine();
                     miBiblioteca.devolverLibro(devolucionId,devolucionLibro);
                     break;
 
+                default:
+                    System.out.print("Opción no válida. Intenta de nuevo.");
             }
         } while (opcion != 7);
 

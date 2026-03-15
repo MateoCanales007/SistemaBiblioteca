@@ -12,6 +12,8 @@ public class Main {
             System.out.println("2. Listar todos los libros");
             System.out.println("3. Registrar lector");
             System.out.println("4. Listar lectores");
+            System.out.println("5. Realizar prestamo");
+            System.out.println("6. Registrar devolucion");
             System.out.println("7. Salir");
             System.out.print("Elige una opción: ");
 
@@ -49,6 +51,23 @@ public class Main {
                     break;
                 default:
                     System.out.println("Opción no válida. Intenta de nuevo.");
+
+                case 5:
+                    System.out.println("ID del lector: ");
+                    String prestamoId = scanner.nextLine();
+                    System.out.println("Titulo del libro para prestar: ");
+                    String prestamoLibro = scanner.nextLine();
+                    miBiblioteca.prestarLibro(prestamoId, prestamoLibro);
+                    break;
+
+                case 6:
+                    System.out.println("ID del lector: ");
+                    String devolucionId = scanner.nextLine();
+                    System.out.println("Titulo del libro para devoler: ");
+                    String devolucionLibro = scanner.nextLine();
+                    miBiblioteca.devolverLibro(devolucionId,devolucionLibro);
+                    break;
+
             }
         } while (opcion != 7);
 

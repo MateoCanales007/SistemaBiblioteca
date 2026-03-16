@@ -1,16 +1,29 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Persistencia persistencia = new Persistencia();
+        ArrayList<Libro> listaLibros = persistencia.cargarLibros();
         Biblioteca miBiblioteca = new Biblioteca();
+
+        for (Libro libro : listaLibros) {
+            miBiblioteca.registrarLibro(
+                    libro.getTitulo(),
+                    libro.getAutor(),
+                    libro.getAnioPublicacion(),
+                    libro.getGenero()
+            );
+        }
+
         int opcion = 0;
 
         do {
             System.out.println("\n===== SISTEMA DE GESTIÓN DE BIBLIOTECA =====");
             System.out.println("1. Registrar un nuevo libro");
             System.out.println("2. Listar todos los libros");
-            System.out.println("7. Salir");
+            System.out.println("3. Salir");
             System.out.print("Elige una opción: ");
 
             opcion = scanner.nextInt();
@@ -34,6 +47,7 @@ public class Main {
                     miBiblioteca.listarTodosLosLibros();
                     break;
                 case 3:
+                    persistencia.guardarLibros(miBiblioteca.getListaLibros());
                     System.out.println("Guardando cambios... Saliendo del sistema.");
                     break;
                 default:

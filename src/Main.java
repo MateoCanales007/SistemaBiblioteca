@@ -23,7 +23,9 @@ public class Main {
             System.out.println("\n===== SISTEMA DE GESTIÓN DE BIBLIOTECA =====");
             System.out.println("1. Registrar un nuevo libro");
             System.out.println("2. Listar todos los libros");
-            System.out.println("3. Salir");
+            System.out.println("3. Registrar lector");
+            System.out.println("4. Listar lectores");
+            System.out.println("7. Salir");
             System.out.print("Elige una opción: ");
 
             opcion = scanner.nextInt();
@@ -47,13 +49,24 @@ public class Main {
                     miBiblioteca.listarTodosLosLibros();
                     break;
                 case 3:
+                    System.out.print("Nombre del lector: ");
+                    String nombre = scanner.nextLine();
+                    System.out.print("Número de identificación: ");
+                    String id = scanner.nextLine();
+
+                    miBiblioteca.registrarLector(nombre, id);
+                    break;
+                case 4:
+                    miBiblioteca.listarLectores();
+                    break;
+                case 7:
                     persistencia.guardarLibros(miBiblioteca.getListaLibros());
                     System.out.println("Guardando cambios... Saliendo del sistema.");
                     break;
                 default:
                     System.out.println("Opción no válida. Intenta de nuevo.");
             }
-        } while (opcion != 3);
+        } while (opcion != 7);
 
         scanner.close();
     }

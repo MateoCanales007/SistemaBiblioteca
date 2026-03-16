@@ -11,7 +11,7 @@ public class Biblioteca {
 
     public Biblioteca() {
         listaLibros = new ArrayList<>();
-        // cargarLibros(); // Carga los libros guardados al iniciar
+        // cargarLibros(); // Se asume que Persistencia lo hace desde Main
         listaLectores = new ArrayList<>();
         cargarLectores();
     }
@@ -24,7 +24,6 @@ public class Biblioteca {
         Libro nuevoLibro = new Libro(titulo, autor, anio, genero);
         listaLibros.add(nuevoLibro);
         System.out.println("¡Libro '" + titulo + "' registrado con éxito!");
-        // guardarLibros();
     }
 
     public void listarTodosLosLibros() {
@@ -60,6 +59,24 @@ public class Biblioteca {
         for (Lector lector : listaLectores) {
             lector.mostrarInfo();
         }
+    }
+
+    private Lector buscarLector(String identificacion){
+        for (Lector lector : listaLectores){
+            if(lector.getIdentificacion().equals(identificacion)){
+                return lector;
+            }
+        }
+        return null;
+    }
+
+    private Libro buscarLibro(String titulo){
+        for (Libro libro : listaLibros){
+            if(libro.getTitulo().equalsIgnoreCase(titulo)){
+                return libro;
+            }
+        }
+        return null;
     }
 
     private void guardarLectores() {
@@ -114,5 +131,49 @@ public class Biblioteca {
         } catch (Exception e) {
             System.out.println("Error al guardar el archivo: " + e.getMessage());
         }
+    }
+
+    public void prestarLibro(String identificacion, String titulo){
+        Lector lector = buscarLector(identificacion);
+        Libro libro = buscarLibro(titulo);
+
+        if (lector == null){
+            System.out.println("Lector no encontrado.");
+            return;
+        }
+        if(libro == null){
+            System.out.println("Libro no encontrado.");
+            return;
+        }
+        if(!libro.isDisponible()){
+            System.out.println("El libro no está disponible.");
+            return;
+        }
+
+        libro.setDisponible(false);
+        lector.agregarLibroPrestado(titulo);
+        System.out.println("Préstamo realizado: " + titulo + " para -> " + lector.getNombre());
+        guardarLectores();
+        guardarLibros();
+    }
+
+    public void devolverLibro(String identificacion, String titulo){
+        Lector lector = buscarLector(identificacion);
+
+        if (lector == null){
+            System.out.println("Lector no encontrado");
+            return;
+        }
+        if(!lector.getLibrosPrestados().contains(titulo)){
+            System.out.println("El lector no tiene prestado ese libro");
+            return;
+        }
+        Libro libro = buscarLibro(titulo);
+        if(libro != null) libro.setDisponible(true);
+
+        lector.getLibrosPrestados().remove(titulo);
+        System.out.println("Se agregó la devolución: " + titulo + " de " + lector.getNombre());
+        guardarLibros();
+        guardarLectores();
     }
 }

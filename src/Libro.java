@@ -31,6 +31,9 @@ public class Libro {
     public int getAnioPublicacion() { return anioPublicacion; }
     public String getGenero() { return genero; }
     public boolean isDisponible() { return disponible; }
+    public void setDisponible(boolean disponible){
+        this.disponible = disponible;
+    }
 
     public void mostrarInfo() {
         String estado = disponible ? "Disponible" : "Prestado";
